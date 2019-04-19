@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<style>
+.tabcontent {
+  display: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+</style>
+<html>
+	<head>
+		<title>Generative Adversarial Networks</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+				<!-- Banner -->
+					<section class="banner style5 content-align-center onload-image-fade-in onload-content-fade-right">
+						<div class="content">
+							<h1>Generative Adversarial Networks</h1>
+							<p><b>Google Applied Machine Learning Intensive</b>
+								<br><i>Mills College, Spring 2019</i>
+								<br><a href="https://www.linkedin.com/in/clairepang/" target="_blank"><b>Claire Pang</b></a>, University of San Francisco
+								<br><a href="https://www.linkedin.com/in/kyle-astroth-271844183/" target="_blank"><b>Kyle Astroth</b></a>, Mills College
+								<br><a href="https://www.linkedin.com/in/aj-bethel-7009bb167/" target="_blank"><b>AJ Bethel</b></a>, Texas Woman's University</p>
+						</div>
+					</section>
+
+					<section class="spotlight style1">
+						<div class="content">
+							<h2>What are GANs?</h2>
+							<p align = "justify"><b>G</b>enerative <b>A</b>dversarial <b>N</b>etworks (GANs) consist of two neural networks that are competing against each other. One neural network, the “generator” takes a random noise vector to produce fake images. The other network, the “discriminator” is fed real images, and uses those to determine if the fake images made by the generator are real or fake. The generator relies on feedback from the discriminator to get better at creating images, while the discriminator gets better at classifying between real and fake images. In our implementation, our generator and discriminator will be convolutional neural networks.
+								<br><br>A popular metaphor is a art forger and art critic:</p>
+								<img src = "./content/artcritic.png" height = "100%" width = "100%"/>
+								<p align = "justify">More specifically, the discriminator is fed (real) training images and learns to distinguish between what's real and what's fake. The generator is given a <i>z</i>-dimensional random noise vector and uses that to generate an image. This picture is then sent to the discriminator to return a value 1 (if real) or 0 (if fake). Once compared against the labels (ground truth: real or fake), the losses are computed. The generator and discriminator are then updated; thus over time, both get better at their jobs.</p>
+								<img src = "./content/gen-dis.jpg" height = "100%" width="100%"/>
+								<p align = "justify">It's important that discriminator doesn't start off too strong, otherwise the generator won't get any information on how to improve itself. The generator doesn't know what the real data looks like; it relies on the discriminator's feedback. Only when the discriminator and generator are balanced do both improve, and hence lead to the generator producing realistic images.
+						</div>
+					</section>
+
+					<section class="spotlight style1">
+						<div class="content">
+							<h2>Architecture of our DCGAN</h2>
+							<p align="justify">The model used for this project was coded using Python, TensorFlow, and Nvidia’s CUDA toolkit. Due to the computational power required to train a GAN, we ran instances of our model using GPUs - both locally (Nvidia RTX 260) and using Google Cloud Platform (Nvidia Tesla K80).</p>
+
+							<p align="justify">Much of our code was based on <a href = "https://github.com/simoninithomas/CatDCGAN/blob/master/Cat%20DCGAN.ipynb" target="_blank">this notebook</a> by <a href = "https://github.com/simoninithomas" target = "_blank">simoninithomas</a>. A corresponding tutorial, which goes more in depth about the code, is also available here. GANs are difficult to train and sensitive to hyperparameters (you don’t want the generator or discriminator overpowering each other), but luckily the hyperparameters used in this notebook proved to have the best results (aside from batch size, which was necessary to avoid OOM errors on our local machines). We attempted to use different hyperparameters, but our experiments performed worse.</p>
+
+							<p align="justify">Our GAN consisted of two convolutional neural networks pitted against each other. The architecture used for this project is as follows:</p>
+							<img src = "./content/architecture.png" height = "100%" width = "100%"/>
+							<p align = "justify">From these <a href="https://github.com/soumith/ganhacks" target = "_blank">"GAN hacks"</a> it is recommended that:
+								<ul>
+									<li>Batch normalization occurs at each layer</li>
+									<li>LeakyReLU as the activation function for both generator and discriminator</li>
+									<li>Use Adam optimizer</li>
+									<li>tanh as last layer of generator output</li>
+								</ul>
+							</p>
+							<p align = "justify"> Our hyperparameters were tuned as follows: <i>generator learning rate</i> - 0.0002,  <i>discriminator learning rate</i> - 0.00005, <i>batch size</i> - 32, <i>alpha</i> - 0.2 (leak parameter for ReLU), and <i>beta</i> - 0.01 (exponential decay rate for 1st moment in the optimizer). 
+							The number of epochs run depended on how long we let the model train for, and whether we thought (based on the outputted images) the model was improving/getting worse. For more specific examples, please see our results below.</p>
+						</div>
+					</section>
+
+					<section class="spotlight style1">
+						<div class="content">
+							<h2>Results</h2>
+							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
+							<div class="tab">
+							  <button class="tablinks" id = "flowersbutton" onclick="openResults(event, 'flowers')">Flowers</button>
+							  <button class="tablinks" id = "facesbutton" onclick="openResults(event, 'faces')">Faces</button>
+							  <button class="tablinks" id = "sunsetsbutton" onclick="openResults(event, 'sunsets')">Sunsets</button>
+							  <button class="tablinks" id = "beachesbutton" onclick="openResults(event, 'beaches')">Beaches</button>
+							  <button class="tablinks" id = "dolphinsbutton" onclick="openResults(event, 'dolphins')">Dolphins</button>
+							</div>
+
+
+							<div id="flowers" class="tabcontent">
+								<h3>The Dataset</h3>
+								<p>This dataset consists of ____ paintings of flowers in vases from wikiart.org and Google images.</p>
+								<h3>Training process, using Nvidia RTX</h3>
+								<img src = "./content/flowers-train.png" width = "100%" height = "100%"/>
+								<h3>Challenges</h3>
+								<p>In this dataset, we noticed that letting it run to 500 epochs led to a worser result. We experienced mode collapse (when all the generated images start to look the same.)</p>
+								<h3>Other generated images</h3>
+							</div>
+							<div id="faces" class="tabcontent">
+							  <h3>The Dataset</h3>
+								<p>This dataset consists of ____ faces.</p>
+								<h3>Training process, using Nvidia RTX</h3>
+								<img src = "./content/faces-train.png" width = "100%" height = "100%"/>
+								<h3>Challenges</h3>
+								<p>placeholder/p>
+								<h3>Other generated images</h3>
+							</div>
+							<div id="sunsets" class="tabcontent">
+							  <h3>The Dataset</h3>
+								<p>This dataset consists of ____ sunsets scraped using Flickr API.</p>
+								<h3>Training process, using Nvidia RTX</h3>
+								<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>
+								<h3>Challenges</h3>
+								<p>placeholder</p>
+								<h3>Other generated images</h3>
+							</div>
+							<div id="dolphins" class="tabcontent">
+							  <h3>The Dataset</h3>
+								<p>This dataset consists of ____ dolphins.</p>
+								<h3>Training process, using Nvidia RTX</h3>
+								<!--<img src = "./content/sunset-train.png" width = "100%" height = "100%"/> -->
+								<h3>Challenges</h3>
+								<p align = "justify">placeholder</p>
+								<h3>Other generated images</h3>
+							</div>
+							<div id="beaches" class="tabcontent">
+							  <h3>The Dataset</h3>
+								<p>This dataset consists of ____ beaches.</p>
+								<h3>Training process, using Nvidia RTX</h3>
+								<!--<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>-->
+								<h3>Challenges</h3>
+								<p align = "justify">placeholder</p>
+								<h3>Other generated images</h3>
+							</div>
+						</div>
+					</section>
+
+					<script>
+						document.getElementById('flowers').style.display = "block";
+						tabcontent = document.getElementsByClassName("tabcontent");
+						/*  for (i = 0; i < tabcontent.length; i++) {
+						    document.getElementById(tabcontent[i].id + "button").style.opacity = 1;
+						}
+						document.getElementById('flowersbutton').style.opacity = 1;*/
+						document.getElementById('flowersbutton').style.backgroundColor = "#DCDCDC";
+
+						function openResults(evt, type) {
+						  var i, tabcontent, tablinks;
+						  tabcontent = document.getElementsByClassName("tabcontent");
+						  for (i = 0; i < tabcontent.length; i++) {
+						    tabcontent[i].style.display = "none";
+						    document.getElementById(tabcontent[i].id + "button").style.backgroundColor = 'transparent';
+						  }
+						  tablinks = document.getElementsByClassName("tablinks");
+						  for (i = 0; i < tablinks.length; i++) {
+						    tablinks[i].className = tablinks[i].className.replace(" active", "");
+						  }
+						  document.getElementById(type).style.display = "block";
+						  evt.currentTarget.className += " active";
+						  document.getElementById(type + "button").style.backgroundColor = "#DCDCDC";
+						}
+					</script>
+
+					<section class="spotlight style1">
+						<div class = "content">
+							<header>
+								<h3>Generate a new image</h3>
+								<p>Please allow a few seconds for your image to be generated.</p>
+							</header>
+								<select name="generatenew" id="generatenew">
+									<option value="flower">Flower Painting</option>
+									<option value="sunset">Sunset</option>
+									<option value="face">Face</option>
+									<option value="beach">Beach</option>
+								</select>
+							<br>
+							<!--<button type="button" class = "small" onClick="reload()">Generate</button>  -->
+							<button type="button" class = "small">Generate</button>
+      						<br><br><img id = "genpic" src = "./content/placeholder.png"> 
+						</div>
+					</section>
+
+					<section class="spotlight style1">
+						<div class = "content">
+							<h2>Other versions of GANs</h2>
+							<p align = "justify">In addition to DCGANs, there are also various other implementations of GANs. For experimentation purposes, we also tried using a Wasserstein GAN (WGAN) on the same sunsets dataset to compare the results.</p>
+							<i>Jupyter notebook here</i>
+							<p align = "justify">Based on the above results, we believe that our sunset DCGAN lead to better results. The <a href = "https://arxiv.org/pdf/1701.07875.pdf" target = "_blank">WGAN</a> is supposedly more stable and fixes problems like mode collapse. <a href = "https://arxiv.org/pdf/1711.10337.pdf" target = "_blank">A paper from Google Brain</a> at NIPS 2018 found no evidence that other versions of GANs, including WGAN, consistently performed better than the <a href="https://arxiv.org/pdf/1406.2661.pdf" target = "_blank">original GAN</a>.
+						</div>
+					</section>
+
+					<section class="spotlight style1">
+						<div class = "content">
+							<h2>Experiments with tuning hyperparameters and other datasets</h2>
+							<p align = "justify">How to best tune a GAN is an open research problem. Grid and random search for trying different hyperparmeters is not the best method due to the computational power and time required to train a GAN. Here are some of our experimentations with different hyperparameters, and how they failed in comparison to the ones used above:</p>
+							<i>Placeholder for flower paintings graphic</i>
+							<p align = "justify">Based on our experiments, we recommend looking up research papers and at other GAN projects to see what hyperparameters were used successfully.</p>
+							<h3>Picasso paintings</h3>
+							<p align = "justify">placeholder</p>
+							<h3>Macaw images</h3>
+							<p align = "justify">placeholder</p>
+						</div>
+					</section>
+
+					<script>
+						function reload(){
+							var selection = document.getElementById("generatenew");
+						    var pic = document.getElementById("genpic");
+						    pic.src = 'http://localhost:5000/generate?=' + new Date().getTime();
+						} 
+					</script>
+
+
+
+				<!-- Footer -->
+					<footer class= "wrapper style1 align-center">
+						<div class = "inner">
+						<h3>Contact Us</h3>
+						<div class="items style3 small">
+								<section>
+									<b>Claire Pang</b>
+									<br><a href="https://www.linkedin.com/in/clairepang/" target = "_blank" class="icon fa-linkedin"></a>&nbsp;<a href="https://www.linkedin.com/in/clairepang/" target = "_blank">clairepang</a>
+									<br><i class="icon fa-envelope"></i>&nbsp;clairepang22@gmail.com
+									
+								</section>
+								<section>
+									<b>Kyle Astroth</b>
+									<br><a href="https://www.linkedin.com/in/kyle-astroth/" target = "_blank" class="icon fa-linkedin"></a>&nbsp;<a href="https://www.linkedin.com/in/kyle-astroth/" target = "_blank">kyle-astroth</a>
+									<br><i class="icon fa-envelope"></i>&nbsp;kastroth@mills.edu
+								</section>
+								<section>
+									<b>AJ Bethel</b>
+									<br><a href="https://www.linkedin.com/in/ajbethel" target = "_blank" class="icon fa-linkedin"></a>&nbsp;<a href="https://www.linkedin.com/in/ajbethel" target = "_blank">ajbethel</a>
+									<br><i class="icon fa-envelope"></i>&nbsp;alwinbethel@gmail.com
+								</section></div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
