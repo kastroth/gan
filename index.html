@@ -10,6 +10,11 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
+.tabcontent2 {
+  display: none;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 </style>
 <html>
 	<head>
@@ -77,8 +82,6 @@
 								<button class="tablinks" id = "sunsetsbutton" onclick="openResults(event, 'sunsets')">Sunsets</button>
 							  	<button class="tablinks" id = "flowersbutton" onclick="openResults(event, 'flowers')">Flowers</button>
 							  	<button class="tablinks" id = "facesbutton" onclick="openResults(event, 'faces')">Faces</button>
-							  	<!--<button class="tablinks" id = "beachesbutton" onclick="openResults(event, 'beaches')">Beaches</button>
-							  	<button class="tablinks" id = "dolphinsbutton" onclick="openResults(event, 'dolphins')">Dolphins</button>-->
 							</div>
 
 
@@ -88,20 +91,17 @@
 								<h3>Training process</h3>
 								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.00002, discriminator - 0.000005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/flowers-train.png" width = "100%" height = "100%"/>
-								<!--<h3>Challenges</h3>
-								<p>In this dataset, we noticed that letting it run to 500 epochs led to a worser result. We experienced mode collapse (when all the generated images start to look the same.) As the generator images don't necessarily increase with training more epochs, we recommend saving multiple versions of the model during training.</p>-->
+								<p align="right"><a href = "flowers.html" target = "blank">jupyter notebook with code + full training</a></p>
 								<h3>Other generated images</h3>
 								<p>The following images are generated using the model saved at epoch 500.</p>
-								<img src = "./content/flowers/merge.jpg" width = "100%"/>
+								<img src = "./content/merge-flowers.jpg" width = "100%"/>
 							</div>
 							<div id="faces" class="tabcontent">
 							  <h3>The Dataset</h3>
-								<p>This dataset consists of 3,785 faces from the <a href = "https://github.com/NVlabs/ffhq-dataset" target = "blank">FFHQ</a> dataset. We used a subset of the 70,000 128x128 thumbnails dataset. The data was cleaned include adults whose eyes were facing forward, not wearing sunglasses, not wearing a hat, and the only person in the photo.</p>
+								<p adjust = "justify">This dataset consists of 3,785 faces from the <a href = "https://github.com/NVlabs/ffhq-dataset" target = "blank">FFHQ</a> dataset. We used a subset of the 70,000 128x128 thumbnails dataset. The data was cleaned to include adults whose head was facing forward, not wearing sunglasses, the only person in the photo, and nothing obstructing the face. We tried training a model with uncleaned data, and the results were much worse.</p>
 								<h3>Training process</h3>
 								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/faces-train.png" width = "100%" height = "100%"/>
-								<!--<h3>Challenges</h3>
-								<p>placeholder</p>-->
 								<h3>Other generated images</h3>
 								<p>The following images are generated using the model saved at epoch 500.</p>
 								<img src = "./content/merge-faces.jpg" width = "100%" />
@@ -112,42 +112,17 @@
 								<h3>Training process</h3>
 								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.5</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>
-								<!--<h3>Challenges</h3>
-								<p>placeholder</p>-->
+								<p align="right"><a href = "sunsets.html" target = "blank">jupyter notebook with code + full training</a></p>
 								<h3>Other generated images</h3>
 								<p>The following images are generated using the model saved at epoch 450 (top row) and epoch 500 (bottom row).</p>
 								<img src = "./content/sunsets-merge.png" width = "100%"/>
 							</div>
-							<!--<div id="dolphins" class="tabcontent">
-							  <h3>The Dataset</h3>
-								<p>This dataset consists of 794 dolphins.</p>
-								<h3>Training process</h3>
-								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
-								<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>
-								<h3>Challenges</h3>
-								<p align = "justify">placeholder</p>
-								<h3>Other generated images</h3>
-							</div>
-							<div id="beaches" class="tabcontent">
-							  <h3>The Dataset</h3>
-								<p>This dataset consists of 1,149 beaches.</p>
-								<h3>Training process</h3>
-								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
-								<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>
-								<h3>Challenges</h3>
-								<p align = "justify">placeholder</p>
-								<h3>Other generated images</h3>
-							</div>-->
 						</div>
 					</section>
 
 					<script>
 						document.getElementById('sunsets').style.display = "block";
 						tabcontent = document.getElementsByClassName("tabcontent");
-						/*  for (i = 0; i < tabcontent.length; i++) {
-						    document.getElementById(tabcontent[i].id + "button").style.opacity = 1;
-						}
-						document.getElementById('flowersbutton').style.opacity = 1;*/
 						document.getElementById('sunsetsbutton').style.backgroundColor = "#DCDCDC";
 
 						function openResults(evt, type) {
@@ -167,61 +142,99 @@
 						}
 					</script>
 
-					<!--<section class="spotlight style1">
-						<div class = "content">
-							<header>
-								<h3>Generate a new image</h3>
-								<p>Please allow a few seconds for your image to be generated.</p>
-							</header>
-								<select name="generatenew" id="generatenew">
-									<option value="flower">Flower Painting</option>
-									<option value="sunset">Sunset</option>
-									<option value="face">Face</option>
-									<option value="beach">Beach</option>
-								</select>
-							<br>-->
-							<!--<button type="button" class = "small" onClick="reload()">Generate</button>  -->
-							<!--<button type="button" class = "small">Generate</button>
-      						<br><br><img id = "genpic" src = "./content/placeholder.png"> 
-						</div>
-					</section> -->
-
 					<section class="spotlight style1">
 						<div class = "content">
 							<h2>Other versions of GANs</h2>
 							<p align = "justify">In addition to DCGANs, there are also various other implementations of GANs. For experimentation purposes, we also tried using a Wasserstein GAN (WGAN) on the same sunsets dataset to compare the results. The code we used is from <a href = "https://github.com/Goldesel23/DCGAN-for-Bird-Generation/blob/master/train_wgan.py" target = "blank">goldesel23.</a></p>
-							<i>Jupyter notebook here</i>
+							<img src = "./content/wgan-train.png" width = "100%" height = "100%" />
 							<p align = "justify">Based on the above results, we believe that our sunset DCGAN lead to better results. The <a href = "https://arxiv.org/pdf/1701.07875.pdf" target = "_blank">WGAN</a> is supposedly more stable and fixes problems like mode collapse, however a <a href = "https://arxiv.org/pdf/1711.10337.pdf" target = "_blank">paper from Google Brain</a> at NIPS 2018 found no evidence that other versions of GANs, including WGAN, consistently performed better than the <a href="https://arxiv.org/pdf/1406.2661.pdf" target = "_blank">original GAN</a>.
 						</div>
 					</section>
 
 					<section class="spotlight style1">
 						<div class = "content">
-							<h2>Challenges, tuning hyperparameters, and other datasets</h2>
-							<h3>Challenges</h3>
-							<p align = "justify">How to best tune a GAN is an open research problem. Grid and random search for trying different hyperparmeters are not the best methods due to the computational power and time required to train a GAN. While doing preliminary research for this project, we were worried about tackling GANs because of the time required to train. Mostly, we only found unsure estimates for how long it took to train – hence, when showing our results, we include our actual training times to provide an estimate for what to expect. Additionally, we didn't find much resources for what <i>didn't</i> work, we mostly saw the final result but didn't see the process of getting there. Thus, we are including the below sections to talk about our entire process of working with GANs.</p>
+							<h2>Discussion, tuning hyperparameters, and other datasets</h2>
+							<h3>Discussion</h3>
+							<p align = "justify">How to best tune a GAN is an open research problem. Grid and random search for trying different hyperparmeters are not the best methods due to the computational power and time required to train a GAN. While doing preliminary research for this project, we were worried about tackling GANs because of the time required to train. Mostly, we only found unsure estimates for how long it took to train – hence, when showing our results, we include our actual training times to provide an estimate for what to expect. Additionally, we didn't find much resources for what <i>didn't</i> work, we mostly saw the final result but didn't see the process of getting there. Thus, we are including the below sections to talk about our entire process of working with GANs.
+								<br>Overall, we noticed that larger datasets do make a difference – our faces dataset was the largest, and the generated images turned out the clearest as well.</p>
 							<h3>Tuning hyperparameters</h3>
-							<p><i>Dataset:</i> Same 1,487 flower paintings as used above
-								<br><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5 </p>
-							<i>Placeholder for flower paintings graphic</i>
-							<p align = "justify">The results at for the flowers at 300 and 350 look similar to the results at epoch 500 of the flowers in "Results" section. However, we noticed that the flowers generated using epochs 300 and 350 with these hyperparameters resulted in a lesser quantity of images considered "good" and with less distingushable features.
-							<br>Also, by letting it run to 500 epochs led to a worser result as we experienced mode collapse (when all the generated images start to look the same - see epoch 500). As the generated images don't necessarily get better by training longer, we recommend saving multiple versions of the model during training.</p>
-							<h3>Macaw Images</h3>
-							<p align = "justify">placeholder</p>
-							<h3>Psychedelic Artwork</h3>
-							<p align = "justify">placeholder</p>
+							<p><i>Dataset:</i> Same 1,487 flower paintings as used above</p>
+							<img src = "./content/flowers-comparison.png" width = "100%" height = "100%"/>
+							<p align = "justify">Model 3 is the model used in the above flower results section. Other iterations, with different hyperparameters, were done and led to worse results.
+							<br>The results from Model 1 at epochs 300/350 look similar to the results at epoch 500 in Model 3. However, we noticed that the flowers generated using epochs 300 and 350 with these hyperparameters resulted in a lesser quantity of images considered "good" and with less defined features. Also, by letting it run to 500 epochs led to a worser result as we experienced mode collapse (when all the generated images start to look the same - see epoch 500). As the generated images don't necessarily get better by training longer, we recommend saving multiple versions of the model during training.
+							<br>Model 2 led to mode collapse quickly, which is likely due to the tuning of alpha and beta.</p>
+							
+							<h3>Working with other datasets</h3>
+
+							<div class="tab">
+								<button class="tablinks" id = "beachesbutton" onclick="openResults2(event, 'beaches')">Beaches</button>
+							  	<button class="tablinks" id = "dolphinsbutton" onclick="openResults2(event, 'dolphins')">Dolphins</button>
+							  	<button class="tablinks" id = "horsesbutton" onclick="openResults2(event, 'horses')">Horses</button>
+							  	<button class="tablinks" id = "macawsbutton" onclick="openResults2(event, 'macaws')">Macaws</button>
+							  	<button class="tablinks" id = "psychedelicbutton" onclick="openResults2(event, 'psychedelic')">Psychedelic</button>
+							</div>
+
+
+							<div id="beaches" class="tabcontent2">
+								<h4>The Dataset</h4>
+								<p>This dataset consists of 1,149 images of beaches from Google Images.</p>
+								<h4>Training process</h4>
+								<img src = "./content/beaches-train.png" width = "100%" height = "100%"/>
+							</div>
+
+							<div id="dolphins" class="tabcontent2">
+								<h4>The Dataset</h4>
+								<p>This dataset consists of 1,001 dolphin images from Google Images.</p>
+								<h4>Training process</h4>
+								<img src = "./content/dolphins-train.png" width = "100%" height = "100%"/>
+							</div>
+
+							<div id="horses" class="tabcontent2">
+								<h4>The Dataset</h4>
+								<p>This dataset consists of 1,412 horse images from Google Images.</p>
+								<h4>Training process</h4>
+								<img src = "./content/horse-train.png" width = "100%" height = "100%"/>
+							</div>
+
+							<div id="macaws" class="tabcontent2">
+								<h4>The Dataset</h4>
+								<p>This dataset consists of 923 macaw images from Google Images.</p>
+								<h4>Training process</h4>
+								<img src = "./content/macaw-train.png" width = "100%" height = "100%"/>
+							</div>
+
+
+							<div id="psychedelic" class="tabcontent2">
+								<h4>The Dataset</h4>
+								<p>This dataset consists of 981 psychedelic artwork images from Google Images.</p>
+								<h4>Training process</h4>
+								<img src = "./content/psychedelic-train.png" width = "100%" height = "100%"/>
+							</div>
+
+							<script>
+								document.getElementById('beaches').style.display = "block";
+								tabcontent = document.getElementsByClassName("tabcontent2");
+								document.getElementById('beachesbutton').style.backgroundColor = "#DCDCDC";
+
+								function openResults2(evt, type) {
+								  var i, tabcontent, tablinks;
+								  tabcontent = document.getElementsByClassName("tabcontent2");
+								  for (i = 0; i < tabcontent.length; i++) {
+								    tabcontent[i].style.display = "none";
+								    document.getElementById(tabcontent[i].id + "button").style.backgroundColor = 'transparent';
+								  }
+								  tablinks = document.getElementsByClassName("tablinks");
+								  for (i = 0; i < tablinks.length; i++) {
+								    tablinks[i].className = tablinks[i].className.replace(" active", "");
+								  }
+								  document.getElementById(type).style.display = "block";
+								  evt.currentTarget.className += " active";
+								  document.getElementById(type + "button").style.backgroundColor = "#DCDCDC";
+								}
+							</script>
+
 						</div>
 					</section>
-
-					<!--<script>
-						function reload(){
-							var selection = document.getElementById("generatenew");
-						    var pic = document.getElementById("genpic");
-						    pic.src = 'http://localhost:5000/generate?=' + new Date().getTime();
-						} 
-					</script>-->
-
-
 
 				<!-- Footer -->
 					<footer class= "wrapper style1 align-center">
