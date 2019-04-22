@@ -25,7 +25,7 @@
 			<div id="wrapper" class="divided">
 
 				<!-- Banner -->
-					<section class="banner style5 content-align-center onload-image-fade-in onload-content-fade-right">
+					<section class="banner style5 content-align-center">
 						<div class="content">
 							<h1>Generative Adversarial Networks</h1>
 							<p><b>Google Applied Machine Learning Intensive</b>
@@ -72,36 +72,38 @@
 					<section class="spotlight style1">
 						<div class="content">
 							<h2>Results</h2>
-							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id ante sed ex pharetra lacinia sit amet vel massa. Donec facilisis laoreet nulla eu bibendum. Donec ut ex risus. Fusce lorem lectus, pharetra pretium massa et, hendrerit vestibulum odio lorem ipsum dolor sit amet.</p>
+							<p align="justify">We trained multiple GANs on different datasets, and the categories that we're satisified with the results are listed below. The code used resizes images to 128x128 and generates 128x128 sized images (may appear smaller on the website here). We modified the code as to save a version of the model every 50 epochs and generate a 3x3 grid of images after each epoch. Our training process, as well as a curated collection of our best generated images, are below.</p>
 							<div class="tab">
 								<button class="tablinks" id = "sunsetsbutton" onclick="openResults(event, 'sunsets')">Sunsets</button>
 							  	<button class="tablinks" id = "flowersbutton" onclick="openResults(event, 'flowers')">Flowers</button>
 							  	<button class="tablinks" id = "facesbutton" onclick="openResults(event, 'faces')">Faces</button>
-							  	<button class="tablinks" id = "beachesbutton" onclick="openResults(event, 'beaches')">Beaches</button>
-							  	<button class="tablinks" id = "dolphinsbutton" onclick="openResults(event, 'dolphins')">Dolphins</button>
+							  	<!--<button class="tablinks" id = "beachesbutton" onclick="openResults(event, 'beaches')">Beaches</button>
+							  	<button class="tablinks" id = "dolphinsbutton" onclick="openResults(event, 'dolphins')">Dolphins</button>-->
 							</div>
 
 
 							<div id="flowers" class="tabcontent">
 								<h3>The Dataset</h3>
-								<p>This dataset consists of 1,487 flower paintings from wikiart.org and Google images. We included only those images of flowers in vases.</p>
+								<p>This dataset consists of 1,487 flower paintings from wikiart.org and Google images. We included only paintings of flowers in vases.</p>
 								<h3>Training process</h3>
 								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.00002, discriminator - 0.000005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/flowers-train.png" width = "100%" height = "100%"/>
-								<h3>Challenges</h3>
-								<p>In this dataset, we noticed that letting it run to 500 epochs led to a worser result. We experienced mode collapse (when all the generated images start to look the same.)</p>
+								<!--<h3>Challenges</h3>
+								<p>In this dataset, we noticed that letting it run to 500 epochs led to a worser result. We experienced mode collapse (when all the generated images start to look the same.) As the generator images don't necessarily increase with training more epochs, we recommend saving multiple versions of the model during training.</p>-->
 								<h3>Other generated images</h3>
+								<p>The following images are generated using the model saved at epoch 500.</p>
 								<img src = "./content/flowers/merge.jpg" width = "100%"/>
 							</div>
 							<div id="faces" class="tabcontent">
 							  <h3>The Dataset</h3>
-								<p>This dataset consists of 3,785 faces from the <a href = "https://github.com/NVlabs/ffhq-dataset" target = "blank">FFHQ</a> dataset. We used a subset of the 70,000 thumbnails. The data was cleaned include adults whose eyes were facing forward, not wearing sunglasses, not wearing a hat, and the only person in the photo.</p>
+								<p>This dataset consists of 3,785 faces from the <a href = "https://github.com/NVlabs/ffhq-dataset" target = "blank">FFHQ</a> dataset. We used a subset of the 70,000 128x128 thumbnails dataset. The data was cleaned include adults whose eyes were facing forward, not wearing sunglasses, not wearing a hat, and the only person in the photo.</p>
 								<h3>Training process</h3>
 								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/faces-train.png" width = "100%" height = "100%"/>
-								<h3>Challenges</h3>
-								<p>placeholder</p>
+								<!--<h3>Challenges</h3>
+								<p>placeholder</p>-->
 								<h3>Other generated images</h3>
+								<p>The following images are generated using the model saved at epoch 500.</p>
 								<img src = "./content/merge-faces.jpg" width = "100%" />
 							</div>
 							<div id="sunsets" class="tabcontent">
@@ -110,16 +112,18 @@
 								<h3>Training process</h3>
 								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.5</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>
-								<h3>Challenges</h3>
-								<p>placeholder</p>
+								<!--<h3>Challenges</h3>
+								<p>placeholder</p>-->
 								<h3>Other generated images</h3>
+								<p>The following images are generated using the model saved at epoch 450 (top row) and epoch 500 (bottom row).</p>
+								<img src = "./content/sunsets-merge.png" width = "100%"/>
 							</div>
-							<div id="dolphins" class="tabcontent">
+							<!--<div id="dolphins" class="tabcontent">
 							  <h3>The Dataset</h3>
 								<p>This dataset consists of 794 dolphins.</p>
 								<h3>Training process</h3>
 								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
-								<!--<img src = "./content/sunset-train.png" width = "100%" height = "100%"/> -->
+								<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>
 								<h3>Challenges</h3>
 								<p align = "justify">placeholder</p>
 								<h3>Other generated images</h3>
@@ -129,11 +133,11 @@
 								<p>This dataset consists of 1,149 beaches.</p>
 								<h3>Training process</h3>
 								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
-								<!--<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>-->
+								<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>
 								<h3>Challenges</h3>
 								<p align = "justify">placeholder</p>
 								<h3>Other generated images</h3>
-							</div>
+							</div>-->
 						</div>
 					</section>
 
@@ -187,19 +191,24 @@
 							<h2>Other versions of GANs</h2>
 							<p align = "justify">In addition to DCGANs, there are also various other implementations of GANs. For experimentation purposes, we also tried using a Wasserstein GAN (WGAN) on the same sunsets dataset to compare the results. The code we used is from <a href = "https://github.com/Goldesel23/DCGAN-for-Bird-Generation/blob/master/train_wgan.py" target = "blank">goldesel23.</a></p>
 							<i>Jupyter notebook here</i>
-							<p align = "justify">Based on the above results, we believe that our sunset DCGAN lead to better results. The <a href = "https://arxiv.org/pdf/1701.07875.pdf" target = "_blank">WGAN</a> is supposedly more stable and fixes problems like mode collapse. <a href = "https://arxiv.org/pdf/1711.10337.pdf" target = "_blank">A paper from Google Brain</a> at NIPS 2018 found no evidence that other versions of GANs, including WGAN, consistently performed better than the <a href="https://arxiv.org/pdf/1406.2661.pdf" target = "_blank">original GAN</a>.
+							<p align = "justify">Based on the above results, we believe that our sunset DCGAN lead to better results. The <a href = "https://arxiv.org/pdf/1701.07875.pdf" target = "_blank">WGAN</a> is supposedly more stable and fixes problems like mode collapse, however a <a href = "https://arxiv.org/pdf/1711.10337.pdf" target = "_blank">paper from Google Brain</a> at NIPS 2018 found no evidence that other versions of GANs, including WGAN, consistently performed better than the <a href="https://arxiv.org/pdf/1406.2661.pdf" target = "_blank">original GAN</a>.
 						</div>
 					</section>
 
 					<section class="spotlight style1">
 						<div class = "content">
-							<h2>Experiments with tuning hyperparameters and other datasets</h2>
-							<p align = "justify">How to best tune a GAN is an open research problem. Grid and random search for trying different hyperparmeters is not the best method due to the computational power and time required to train a GAN. Here are some of our experimentations with different hyperparameters, and how they failed in comparison to the ones used above:</p>
+							<h2>Challenges, tuning hyperparameters, and other datasets</h2>
+							<h3>Challenges</h3>
+							<p align = "justify">How to best tune a GAN is an open research problem. Grid and random search for trying different hyperparmeters are not the best methods due to the computational power and time required to train a GAN. While doing preliminary research for this project, we were worried about tackling GANs because of the time required to train. Mostly, we only found unsure estimates for how long it took to train – hence, when showing our results, we include our actual training times to provide an estimate for what to expect. Additionally, we didn't find much resources for what <i>didn't</i> work, we mostly saw the final result but didn't see the process of getting there. Thus, we are including the below sections to talk about our entire process of working with GANs.</p>
+							<h3>Tuning hyperparameters</h3>
+							<p><i>Dataset:</i> Same 1,487 flower paintings as used above
+								<br><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5 </p>
 							<i>Placeholder for flower paintings graphic</i>
-							<p align = "justify">Based on our experiments, we recommend looking up research papers and at other GAN projects to see what hyperparameters were used successfully.</p>
-							<h3>Picasso paintings</h3>
+							<p align = "justify">The results at for the flowers at 300 and 350 look similar to the results at epoch 500 of the flowers in "Results" section. However, we noticed that the flowers generated using epochs 300 and 350 with these hyperparameters resulted in a lesser quantity of images considered "good" and with less distingushable features.
+							<br>Also, by letting it run to 500 epochs led to a worser result as we experienced mode collapse (when all the generated images start to look the same - see epoch 500). As the generated images don't necessarily get better by training longer, we recommend saving multiple versions of the model during training.</p>
+							<h3>Macaw Images</h3>
 							<p align = "justify">placeholder</p>
-							<h3>Macaw images</h3>
+							<h3>Psychedelic Artwork</h3>
 							<p align = "justify">placeholder</p>
 						</div>
 					</section>
