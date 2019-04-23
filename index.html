@@ -30,7 +30,7 @@
 			<div id="wrapper" class="divided">
 
 				<!-- Banner -->
-					<section class="banner style5 content-align-center" style="background-image:url(content/Banner3.png)">
+					<section class="banner style5 content-align-center" style="background-image:url(content/banner.png)">
 						<div class="content">
 							<h1>Generative Adversarial Networks</h1>
 							<p><b>Google Applied Machine Learning Intensive</b>
@@ -87,34 +87,34 @@
 
 							<div id="flowers" class="tabcontent">
 								<h3>The Dataset</h3>
-								<p>This dataset consists of 1,487 flower paintings from wikiart.org and Google images. We included only paintings of flowers in vases.</p>
+								<p align = "justify">This dataset consists of 1,487 flower paintings from wikiart.org and Google images. We included only paintings of flowers in vases.</p>
 								<h3>Training process</h3>
-								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.00002, discriminator - 0.000005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
+								<p align = "justify"><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.00002, discriminator - 0.000005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/flowers-train.png" width = "100%" height = "100%"/>
 								<p align="right"><a href = "flowers.html" target = "blank">jupyter notebook with code + full training</a></p>
 								<h3>Other generated images</h3>
-								<p>The following images are generated using the model saved at epoch 500.</p>
+								<p align = "justify">The following images are generated using the model saved at epoch 500.</p>
 								<img src = "./content/merge-flowers.jpg" width = "100%"/>
 							</div>
 							<div id="faces" class="tabcontent">
 							  <h3>The Dataset</h3>
-								<p adjust = "justify">This dataset consists of 3,785 faces from the <a href = "https://github.com/NVlabs/ffhq-dataset" target = "blank">FFHQ</a> dataset. We used a subset of the 70,000 128x128 thumbnails dataset. The data was cleaned to include adults whose head was facing forward, not wearing sunglasses, the only person in the photo, and nothing obstructing the face. We tried training a model with uncleaned data, and the results were much worse.</p>
+								<p align = "justify">This dataset consists of 3,785 faces from the <a href = "https://github.com/NVlabs/ffhq-dataset" target = "blank">FFHQ</a> dataset. We used a subset of the 70,000 128x128 thumbnails dataset. The data was cleaned to include adults whose heads were facing forward with little to no obstruction of the face (caused by hats, sunglasses, etc). Photos that were eliminated from the dataset also included anomalies like: more than one person in the photo, and off-kilter photos where the adult pictured did not represent a face-forward headshot. We tried training a model with uncleaned data, and the results were much worse.</p>
 								<h3>Training process</h3>
-								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
+								<p align = "justify"><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/faces-train.png" width = "100%" height = "100%"/>
 								<h3>Other generated images</h3>
-								<p>The following images are generated using the model saved at epoch 500.</p>
+								<p align = "justify">The following images are generated using the model saved at epoch 500.</p>
 								<img src = "./content/merge-faces.jpg" width = "100%" />
 							</div>
 							<div id="sunsets" class="tabcontent">
 							  <h3>The Dataset</h3>
-								<p>This dataset consists of 2,349 sunsets scraped using the Flickr API.</p>
+								<p align = "justify">This dataset consists of 2,349 sunsets scraped using the Flickr API.</p>
 								<h3>Training process</h3>
-								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.5</i>, <i>beta</i>: 0.5</p>
+								<p align = "justify"><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.5</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>
 								<p align="right"><a href = "sunsets.html" target = "blank">jupyter notebook with code + full training</a></p>
 								<h3>Other generated images</h3>
-								<p>The following images are generated using the model saved at epoch 450 (top row) and epoch 500 (bottom row).</p>
+								<p align = "justify">The following images are generated using the model saved at epoch 450 (top row) and epoch 500 (bottom row).</p>
 								<img src = "./content/sunsets-merge.png" width = "100%"/>
 							</div>
 						</div>
@@ -155,13 +155,13 @@
 						<div class = "content">
 							<h2>Discussion, tuning hyperparameters, and other datasets</h2>
 							<h3>Discussion</h3>
-							<p align = "justify">How to best tune a GAN is an open research problem. Grid and random search for trying different hyperparmeters are not the best methods due to the computational power and time required to train a GAN. While doing preliminary research for this project, we were worried about tackling GANs because of the time required to train. Mostly, we only found unsure estimates for how long it took to train – hence, when showing our results, we include our actual training times to provide an estimate for what to expect. Additionally, we didn't find much resources for what <i>didn't</i> work, we mostly saw the final result but didn't see the process of getting there. Thus, we are including the below sections to talk about our entire process of working with GANs.
+							<p align = "justify">How to best tune a GAN is an open research problem. Grid and random search for trying different hyperparmeters are not the best methods due to the computational power and time required to train a GAN. While doing preliminary research for this project, we were worried about tackling GANs because of the time required to train. Mostly, we only found unsure estimates for how long it took to train – hence, when showing our results, we include our actual training times to provide an estimate for what to expect. Additionally, we didn't find many resources for what <i>didn't</i> work, we mostly saw the final result but didn't see the process of getting there. Thus, we are including the below sections to talk about our entire process of working with GANs.
 								<br>Overall, we noticed that larger datasets do make a difference – our faces dataset was the largest, and the generated images turned out the clearest as well.</p>
 							<h3>Tuning hyperparameters</h3>
-							<p><i>Dataset:</i> Same 1,487 flower paintings as used above</p>
+							<p align = "justify"><i>Dataset:</i> Same 1,487 flower paintings as used above</p>
 							<img src = "./content/flowers-comparison.png" width = "100%" height = "100%"/>
-							<p align = "justify">Model 3 is the model used in the above flower results section. Other iterations, with different hyperparameters, were done and led to worse results.
-							<br>The results from Model 1 at epochs 300/350 look similar to the results at epoch 500 in Model 3. However, we noticed that the flowers generated using epochs 300 and 350 with these hyperparameters resulted in a lesser quantity of images considered "good" and with less defined features. Also, by letting it run to 500 epochs led to a worser result as we experienced mode collapse (when all the generated images start to look the same - see epoch 500). As the generated images don't necessarily get better by training longer, we recommend saving multiple versions of the model during training.
+							<p align = "justify">Model 3 is the model used in the above flower results section. Other models with different hyperparameters, were run and led to worse results.
+							<br>The results from Model 1 at epochs 300/350 look similar to the results at epoch 500 in Model 3. However, we noticed that the flowers generated using epochs 300 and 350 with these hyperparameters resulted in a lesser quantity of images considered "good" and with less defined features. By letting it run to 500 epochs we experienced mode collapse (when all the generated images start to look the same - see epoch 500). As the generated images don't necessarily get better by training longer, we recommend saving multiple versions of the model during training.
 							<br>Model 2 led to mode collapse quickly, which is likely due to the tuning of alpha and beta.</p>
 							
 							<h3>Working with other datasets</h3>
@@ -177,43 +177,48 @@
 
 							<div id="beaches" class="tabcontent2">
 								<h4>The Dataset</h4>
-								<p>This dataset consists of 1,149 images of beaches from Google Images.</p>
+								<p align = "justify">This dataset consists of 1,149 images of beaches from Google Images.</p>
 								<h4>Training process</h4>
-								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.00002, discriminator - 0.000005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
+								<p align = "justify"><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.00002, discriminator - 0.000005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/beaches-train.png" width = "100%" height = "100%"/>
+								<p align = "justify">The beaches dataset was scraped from Google Images and consequently the data was extremely diversified. A “photography” tag and “teal” color tag were applied through Google’s search tools to present photographic representations of beaches. However, the images collected represented a number of different views of beaches, featuring details like palm trees, giant stone pillars, etc. Due to the relatively small size of the dataset (1,149 images), paired with extremely diversified data, the output was lesser than desired quality. We edited the learning rates and played with the extremely sensitive hyperparameters to no avail of a desired result.</p>
 							</div>
 
 							<div id="dolphins" class="tabcontent2">
 								<h4>The Dataset</h4>
-								<p>This dataset consists of 1,001 dolphin images from Google Images.</p>
+								<p align = "justify">This dataset consists of 1,001 dolphin images from Google Images.</p>
 								<h4>Training process</h4>
-								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
+								<p align = "justify"><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/dolphins-train.png" width = "100%" height = "100%"/>
+								<p align="justify">The dolphins data was acquired from Google Images using the search terms “dolphin jumping out of water”, filtered by the color “blue” and “photography” as the type. An obstacle we faced in attaining “good” results was due to the data being too diversified. Despite our specified query being precise, the returned results contained 1,001 images which showed a diversity of dolphins in different orientations and numbers. We ran a second iteration of this model adjusting the generator and discriminator learning rates from 0.00005 to 0.000005 and 0.0004 to 0.00004, respectively. The output suggested an initial expectation of improved results, but at epoch 500, very little change was observed from the initial iteration.</p>
 							</div>
 
 							<div id="horses" class="tabcontent2">
 								<h4>The Dataset</h4>
-								<p>This dataset consists of 1,412 horse images from Google Images.</p>
+								<p align = "justify">This dataset consists of 1,412 horse images from Google Images.</p>
 								<h4>Training process</h4>
-								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.5</i>, <i>beta</i>: 0.5</p>
+								<p align = "justify"><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.5</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/horse-train.png" width = "100%" height = "100%"/>
+								<p align="justify">After researching how to train GANs on animal imagery, we noted that GANs are notorious for producing distorted images of animals. This may be due to the complexities and intricacies of animal data (limbs should be correctly shaped and proportional to the rest of the body). After running an initial model which produced poor results, we edited each respective learning rate an additional degree, which did not prove to help the outcome. A potential solution would be to increase the size of the dataset to allow for the model to understand the dataset more clearly. Cleaning and reducing the diversity of images may also prove to be useful in attaining better results.</p>
 							</div>
 
 							<div id="macaws" class="tabcontent2">
 								<h4>The Dataset</h4>
-								<p>This dataset consists of 923 macaw images from Google Images.</p>
+								<p align = "justify">This dataset consists of 923 macaw images from Google Images.</p>
 								<h4>Training process</h4>
-								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
+								<p align = "justify"><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/macaw-train.png" width = "100%" height = "100%"/>
+								<p align="justify">The macaw dataset was scraped from Google Images using the search terms “red macaw” and filtered by “photography” and the color “red”. 923 images were used to train the model after eliminating anomalous images and rough cleaning of the raw dataset. The model seemingly had issues understanding the intricate details of the macaw face. General color patterns and a broad comprehension of the shape of macaws were evident in the generated output. Tinkering with hyperparameters proved little to no effect for improving the results, and additional data would be needed to provide better context to the model.</p>
 							</div>
 
 
 							<div id="psychedelic" class="tabcontent2">
 								<h4>The Dataset</h4>
-								<p>This dataset consists of 981 psychedelic artwork images from Google Images.</p>
+								<p align = "justify">This dataset consists of 981 psychedelic artwork images from Google Images.</p>
 								<h4>Training process</h4>
-								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
+								<p align = "justify"><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/psychedelic-train.png" width = "100%" height = "100%"/>
+								<p align="justify">The psychedelic dataset was collected through scraping Google Images using the search terms “psychedelic artwork”; 981 images were obtained. Initially, the model seemed to show promise, but eventually ended in mode collapse over a number of epochs. The model was able to gain a general understanding of the number of colors intrinsic to psychedelic artwork, but due to the data being diverse and containing intricate patterns the model was unsuccessful at establishing any patterns or shapes. It would be interesting to try a larger dataset to see how our results would improve. Also, narrowing down to a specific type of psychedelic artwork may have proven useful.</p>
 							</div>
 
 							<script>
