@@ -30,7 +30,7 @@
 			<div id="wrapper" class="divided">
 
 				<!-- Banner -->
-					<section class="banner style5 content-align-center">
+					<section class="banner style5 content-align-center" style="background-image:url(content/Banner3.png)">
 						<div class="content">
 							<h1>Generative Adversarial Networks</h1>
 							<p><b>Google Applied Machine Learning Intensive</b>
@@ -56,7 +56,7 @@
 					<section class="spotlight style1">
 						<div class="content">
 							<h2>Architecture of our DCGAN</h2>
-							<p align="justify">The model used for this project was coded using Python, TensorFlow, and Nvidia’s CUDA toolkit. Due to the computational power required to train a GAN, we ran instances of our model using GPUs - both locally (Nvidia RTX 260) and using Google Cloud Platform (Nvidia Tesla K80).</p>
+							<p align="justify">The model used for this project was coded using Python, TensorFlow, and Nvidia’s CUDA toolkit. Due to the computational power required to train a GAN, we ran instances of our model using GPUs - both locally (Nvidia RTX 2060) and using Google Cloud Platform (Nvidia Tesla K80).</p>
 
 							<p align="justify">Much of our code was based on <a href = "https://github.com/simoninithomas/CatDCGAN/blob/master/Cat%20DCGAN.ipynb" target="_blank">this notebook</a> by <a href = "https://github.com/simoninithomas" target = "_blank">simoninithomas</a>. A corresponding tutorial, which goes more in depth about the code, is also available <a href = "https://medium.freecodecamp.org/how-ai-can-learn-to-generate-pictures-of-cats-ba692cb6eae4" target = "_blank">here</a>. GANs are difficult to train and sensitive to hyperparameters (you don’t want the generator or discriminator overpowering each other). We tried the hyperparameters used in this notebook, as well as our own. The hyperparameters we tuned were: generator learning rate, discriminator learning rate, batch size, alpha (leak parameter for leaky ReLU), and beta (exponential decay rate for 1st moment in the optimizer). For batch size, it was required to use 32 when trained locally to avoid OOM errors.
 							<br>The number of epochs run depended on how long we let the model train for, and whether we thought (based on the outputted images) the model was improving/getting worse. For more specific hyperparameters, please see our results below.</p>
@@ -89,7 +89,7 @@
 								<h3>The Dataset</h3>
 								<p>This dataset consists of 1,487 flower paintings from wikiart.org and Google images. We included only paintings of flowers in vases.</p>
 								<h3>Training process</h3>
-								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.00002, discriminator - 0.000005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
+								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.00002, discriminator - 0.000005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/flowers-train.png" width = "100%" height = "100%"/>
 								<p align="right"><a href = "flowers.html" target = "blank">jupyter notebook with code + full training</a></p>
 								<h3>Other generated images</h3>
@@ -100,7 +100,7 @@
 							  <h3>The Dataset</h3>
 								<p adjust = "justify">This dataset consists of 3,785 faces from the <a href = "https://github.com/NVlabs/ffhq-dataset" target = "blank">FFHQ</a> dataset. We used a subset of the 70,000 128x128 thumbnails dataset. The data was cleaned to include adults whose head was facing forward, not wearing sunglasses, the only person in the photo, and nothing obstructing the face. We tried training a model with uncleaned data, and the results were much worse.</p>
 								<h3>Training process</h3>
-								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
+								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/faces-train.png" width = "100%" height = "100%"/>
 								<h3>Other generated images</h3>
 								<p>The following images are generated using the model saved at epoch 500.</p>
@@ -110,7 +110,7 @@
 							  <h3>The Dataset</h3>
 								<p>This dataset consists of 2,349 sunsets scraped using the Flickr API.</p>
 								<h3>Training process</h3>
-								<p><i>GPU:</i> Nvidia RTX 260, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.5</i>, <i>beta</i>: 0.5</p>
+								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.5</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/sunset-train.png" width = "100%" height = "100%"/>
 								<p align="right"><a href = "sunsets.html" target = "blank">jupyter notebook with code + full training</a></p>
 								<h3>Other generated images</h3>
@@ -179,6 +179,7 @@
 								<h4>The Dataset</h4>
 								<p>This dataset consists of 1,149 images of beaches from Google Images.</p>
 								<h4>Training process</h4>
+								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.00002, discriminator - 0.000005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/beaches-train.png" width = "100%" height = "100%"/>
 							</div>
 
@@ -186,6 +187,7 @@
 								<h4>The Dataset</h4>
 								<p>This dataset consists of 1,001 dolphin images from Google Images.</p>
 								<h4>Training process</h4>
+								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/dolphins-train.png" width = "100%" height = "100%"/>
 							</div>
 
@@ -193,6 +195,7 @@
 								<h4>The Dataset</h4>
 								<p>This dataset consists of 1,412 horse images from Google Images.</p>
 								<h4>Training process</h4>
+								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.5</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/horse-train.png" width = "100%" height = "100%"/>
 							</div>
 
@@ -200,6 +203,7 @@
 								<h4>The Dataset</h4>
 								<p>This dataset consists of 923 macaw images from Google Images.</p>
 								<h4>Training process</h4>
+								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/macaw-train.png" width = "100%" height = "100%"/>
 							</div>
 
@@ -208,6 +212,7 @@
 								<h4>The Dataset</h4>
 								<p>This dataset consists of 981 psychedelic artwork images from Google Images.</p>
 								<h4>Training process</h4>
+								<p><i>GPU:</i> Nvidia RTX 2060, <i>learning rate:</i> generator - 0.0002, discriminator - 0.00005, <i>alpha: 0.2</i>, <i>beta</i>: 0.5</p>
 								<img src = "./content/psychedelic-train.png" width = "100%" height = "100%"/>
 							</div>
 
